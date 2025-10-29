@@ -52,6 +52,8 @@
     
     <script>
         const messages = ['Lavori in corso', 'Work in progress'];
+        const TRANSITION_DURATION = 500; // milliseconds - matches CSS transition
+        const MESSAGE_INTERVAL = 3000; // milliseconds
         let currentIndex = 0;
         const messageElement = document.getElementById('message');
         
@@ -64,11 +66,11 @@
                 currentIndex = (currentIndex + 1) % messages.length;
                 messageElement.textContent = messages[currentIndex];
                 messageElement.classList.remove('fade-out');
-            }, 500); // Half second for fade out
+            }, TRANSITION_DURATION);
         }
         
-        // Change message every 3 seconds
-        setInterval(changeMessage, 3000);
+        // Change message every few seconds
+        setInterval(changeMessage, MESSAGE_INTERVAL);
     </script>
 </body>
 </html>
