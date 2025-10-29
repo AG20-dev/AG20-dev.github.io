@@ -31,6 +31,11 @@
             font-weight: 300;
             letter-spacing: 0.1em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        h1.fade-out {
+            opacity: 0;
         }
         
         @media (max-width: 768px) {
@@ -42,7 +47,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>Lavori in corso</h1>
+        <h1 id="message">Lavori in corso</h1>
     </div>
+    
+    <script>
+        const messages = ['Lavori in corso', 'Work in progress'];
+        let currentIndex = 0;
+        const messageElement = document.getElementById('message');
+        
+        function changeMessage() {
+            // Fade out
+            messageElement.classList.add('fade-out');
+            
+            // Wait for fade out to complete, then change text and fade in
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % messages.length;
+                messageElement.textContent = messages[currentIndex];
+                messageElement.classList.remove('fade-out');
+            }, 500); // Half second for fade out
+        }
+        
+        // Change message every 3 seconds
+        setInterval(changeMessage, 3000);
+    </script>
 </body>
 </html>
